@@ -14,3 +14,18 @@
 .pokedex__text{
     margin: 15px;
 }
+
+.pokedex__item:hover{
+    cursor: pointer;
+}
+
+@media screen and ( max-width: 850px ){
+
+    .pokedex__grid{
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+    } 
+
+  }
+  

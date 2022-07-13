@@ -10,10 +10,15 @@
 
 .container{
   margin: auto;
+  margin-top: 25px;
   width: 60%;
 }
 
+.pokedex__header{
+  text-align: left;
+}
 .pokedex__section{
+  margin-top: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -23,14 +28,6 @@
     flex-direction: column;
     width: 100%;
   }
-  .pokedex__grid{
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  } 
-  .pokedex__aside{
-    width: 100%;
-    background: antiquewhite;
-  }
-
 }
+
+

@@ -24,7 +24,6 @@ function App() {
     .then( ( resp ) => resp.json()) 
     .then( ( data ) => {
       setPokemon( data );
-      console.log( data )
     })
     .catch( err => console.log('Solicitud fallida', err) );
   }
@@ -41,9 +40,9 @@ function App() {
 
   return (
     <div className='container'>
-      <header>
+      <header className='pokedex__header'>
         <h1>Listado de Pokemon</h1>
-        {/* <Search/> */}
+        <Search setPokemons= { setPokemons } />
       </header>
       <section className='pokedex__section'>
           <Grid 

@@ -17,7 +17,7 @@ const getHexadecimnal = (str) => {
 }
 
 const getCurrentPage = ( url ) => {
-    console.log( url.charAt(url.indexOf("offset=")+7));
+    // console.log( url.charAt(url.indexOf("offset=")+7));
 }
 const getCapitalized = ( str ) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
