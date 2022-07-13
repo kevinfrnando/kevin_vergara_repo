@@ -19,3 +19,24 @@
   background: #0173b9;
 }
 
+.pokedex__pag_buttons{
+  margin: 0 5px;
+}
+
+
+.pokedex__found{
+  height: px;
+  width: 25%;
+  margin: 0 25px;
+  background: #0089DF;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+}
+
+
+.pokedex__found:hover{
+  cursor: pointer;
+  background: #0173b9;
+}

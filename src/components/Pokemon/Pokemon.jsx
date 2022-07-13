@@ -32,7 +32,7 @@ function Pokemon( { pokemon } ){
                         <img className='pokedex__sprite' src={ pokemon.sprites.front_shiny} alt='front_shiny'/>
                     </figure>
                 <b><label>Movimientos</label></b><br/>
-                    <textarea className='pokedex__textarea' rows={4} value={pokemon.moves.map( ( e ) => (
+                    <textarea className='pokedex__textarea' readOnly={true} rows={4} value={pokemon.moves.map( ( e ) => (
                         e.move.name + " "
                     ))}/>
                         

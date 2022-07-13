@@ -8,16 +8,19 @@ import { getCurrentPage } from './helpers/functions';
 
 function App() {
 
-  const [ url, setUrl ] = useState("https://pokeapi.co/api/v2/pokemon?limit=4");
+  const [ api, setApi ] = useState("https://pokeapi.co/api/v2/pokemon?limit=4");
   const [ pokemon, setPokemon ] = useState( null );
   const [ pokemons, setPokemons ] = useState( [] );
   const [ previous, setPrevious ] = useState("");
   const [ next, setNext ] = useState("");
+  const [ currentPage, setCurrentPage ] = useState("");
+  const [ currentUrl, setCurrentUrl ] = useState( api );
+  const [ found, setFound ] = useState( false );
 
   useEffect( ()=>{
     getPokemons();
-    getCurrentPage( url );
-  },[ url ]);
+    setCurrentPage( getCurrentPage( currentUrl ) );
+  },[ currentUrl ]);
 
   const getPokemon = ( find ) => {
     fetch( find )
@@ -28,7 +31,7 @@ function App() {
     .catch( err => console.log('Solicitud fallida', err) );
   }
   const getPokemons = () =>{
-    fetch( url )
+    fetch( currentUrl )
     .then( ( resp ) => resp.json()) 
     .then( ( data ) => {
       setPokemons( data.results );
@@ -38,11 +41,17 @@ function App() {
     .catch( err => console.log('Solicitud fallida', err) );
   }
 
+
+  const backStart = () => { setCurrentUrl( api ); getPokemons(); setFound( false )} 
+  const back = () => { getPokemons(); setFound( false )} 
+
   return (
     <div className='container'>
       <header className='pokedex__header'>
         <h1>Listado de Pokemon</h1>
-        <Search setPokemons= { setPokemons } />
+        <Search 
+          setPokemons= { setPokemons }
+          setFound = { setFound } />
       </header>
       <section className='pokedex__section'>
           <Grid 
@@ -53,8 +62,13 @@ function App() {
       </section>
       <footer>
         <Pagination
-          backPage = { () => setUrl( previous ) }
-          nextPage = { () => setUrl( next ) }
+          previousPage = { () => setCurrentUrl( previous ) }
+          nextPage = { () => setCurrentUrl( next ) }
+          back = { back }
+          backStart = { backStart }
+          found = { found }
+          setFound = { setFound }
+          currentPage = { currentPage }
         />
       </footer>
     </div>

@@ -17,10 +17,26 @@ const getHexadecimnal = (str) => {
 }
 
 const getCurrentPage = ( url ) => {
-    // console.log( url.charAt(url.indexOf("offset=")+7));
+    let page = 0;
+    if( url != null ){
+        let ind0 = url.indexOf ("offset=") ;	
+        let offset = "";
+        if (ind0>=0)	
+        {
+            let ind1 = url.indexOf ("&limit");	
+        
+            if (ind1 > ind0)	{
+                offset = url.substring (ind0+"offset=".length,	ind1);	
+                page = parseInt( offset ) / 4;
+            }
+        }
+    }
+    return page+1;
 }
 const getCapitalized = ( str ) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+
 
 export { getId, getHexadecimnal, getCapitalized , getCurrentPage};
