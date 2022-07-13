@@ -9,5 +9,28 @@
 }
 
 .container{
+  margin: auto;
+  width: 60%;
+}
+
+.pokedex__section{
   display: flex;
+  justify-content: space-between;
+}
+
+@media screen and ( max-width: 850px ){
+  .pokedex__section{
+    flex-direction: column;
+    width: 100%;
+  }
+  .pokedex__grid{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  } 
+  .pokedex__aside{
+    width: 100%;
+    background: antiquewhite;
+  }
+
 }

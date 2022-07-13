@@ -1,0 +1,16 @@
+.pokedex__grid{
+    width: 75%;
+    height: 75vh;
+    display: flex;
+    flex-wrap: wrap;
+}
+.pokedex__grid_figure{
+    margin: 10px auto;
+    height: 60%;
+    width: 80%;
+    background: #F9FAFB;
+}
+
+.pokedex__text{
+    margin: 15px;
+}
