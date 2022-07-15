@@ -10,6 +10,9 @@
     width: 80%;
     background: #F9FAFB;
 }
+.pokedex__item__image{
+    height: 90%;
+}
 
 .pokedex__text{
     margin: 15px;
@@ -27,5 +30,5 @@
       flex-wrap: wrap;
     } 
 
-  }
+}
   

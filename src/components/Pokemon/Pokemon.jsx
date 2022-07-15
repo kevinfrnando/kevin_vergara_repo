@@ -2,22 +2,21 @@ import './Pokemons.css';
 import { getCapitalized, getId } from '../../helpers/functions';
 
 function Pokemon( { pokemon } ){
-
     return(
         pokemon != null ? 
         <aside className="pokedex__aside">
             <figure className='pokedex__figure'>
                 <img className='pokedex__image' src={ pokemon?.sprites?.other?.home?.front_default} alt='pokemon_image'/>
             </figure>
-            <h3>#{getId( pokemon.forms[0].url)}</h3>
+            <h3>#{getId( pokemon?.forms[0]?.url)}</h3>
             <h3>{ getCapitalized( pokemon.name ) }</h3>
             <div className='pokedex__details'>
                 <b><label>Types</label></b><br/>
                 {
                     <span>
                         {
-                            pokemon.types.map( ( e ) => (
-                                e.type.name + " "
+                            pokemon?.types.map( ( e ) => (
+                                e?.type?.name + " "
                             ))
                         }
                     </span>
@@ -33,7 +32,7 @@ function Pokemon( { pokemon } ){
                     </figure>
                 <b><label>Movimientos</label></b><br/>
                     <textarea className='pokedex__textarea' readOnly={true} rows={4} value={pokemon.moves.map( ( e ) => (
-                        e.move.name + " "
+                        e?.move?.name + " "
                     ))}/>
                         
             </div>

@@ -23,7 +23,7 @@
   justify-content: space-between;
 }
 
-@media screen and ( max-width: 850px ){
+@media screen and ( max-width: 850px ) {
   .pokedex__section{
     flex-direction: column;
     width: 100%;

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './Search.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSadCry } from '@fortawesome/free-solid-svg-icons';
@@ -8,9 +7,8 @@ function Search( { setPokemons, setFound } ){
 
     const searchPokemon = ( e ) =>{
         e.preventDefault();
-        let pokemon = e.target[0].value.toLowerCase();
-        if( pokemon.length > 0 ){
-            console.log( e.target[0].value );
+        let pokemon = e?.target[0]?.value.toLowerCase();
+        if( pokemon?.length > 0 ){
             
             fetch( "https://pokeapi.co/api/v2/pokemon/"+pokemon )
                 .then( ( resp ) =>  {
@@ -34,7 +32,7 @@ function Search( { setPokemons, setFound } ){
         }
     }
     return(
-        <form action="#" onSubmit={ ( e ) => searchPokemon( e ) } className="pokedex__form">
+        <form data-testid="form" action="#" onSubmit={ ( e ) => searchPokemon( e ) } className="pokedex__form">
             <input title='Escribe el nombre de un Pokemon y presiona ENTER.' className="pokedex__search" placeholder="Buscar" type="text"/>
             <div id="toast"><div id="img"><FontAwesomeIcon icon={faSadCry} /> </div><div id="desc">No se encontro el Pokemon.</div></div>
         </form>

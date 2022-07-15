@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import Grid from './components/Grid/Grid';
 import Pagination from './components/Pagination/Pagination';
@@ -16,27 +16,32 @@ function App() {
   const [ currentPage, setCurrentPage ] = useState("");
   const [ currentUrl, setCurrentUrl ] = useState( api );
   const [ found, setFound ] = useState( false );
+  
+  const getPokemons = useCallback( async () => {
+    try{
+      await fetch( currentUrl )
+      .then( ( resp ) => resp.json()) 
+      .then( ( data ) => {
+        setPokemons( data.results );
+        setPrevious( data.previous );
+        setNext( data.next );
+      })
+    }catch( err ){
+      setPokemons([]);
+    }
+  }, [ currentUrl ])
+
 
   useEffect( ()=>{
     getPokemons();
     setCurrentPage( getCurrentPage( currentUrl ) );
-  },[ currentUrl ]);
+  },[ currentUrl, getPokemons ]);
 
   const getPokemon = ( find ) => {
     fetch( find )
     .then( ( resp ) => resp.json()) 
     .then( ( data ) => {
       setPokemon( data );
-    })
-    .catch( err => console.log('Solicitud fallida', err) );
-  }
-  const getPokemons = () =>{
-    fetch( currentUrl )
-    .then( ( resp ) => resp.json()) 
-    .then( ( data ) => {
-      setPokemons( data.results );
-      setPrevious( data.previous );
-      setNext( data.next );
     })
     .catch( err => console.log('Solicitud fallida', err) );
   }

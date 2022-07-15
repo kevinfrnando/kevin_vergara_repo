@@ -2,7 +2,7 @@ import './Grid.css';
 import { getCapitalized, getHexadecimnal, getId } from '../../helpers/functions';
 function Grid( {pokemons, getPokemon } ){
 
-    var style = {
+    let style = {
         margin: '10px',
         width: '40%',
         height: '30vh',
@@ -15,7 +15,7 @@ function Grid( {pokemons, getPokemon } ){
                 pokemons.map( (e,i) => {  
                     return <div key={ i } onClick={ () => getPokemon( e.url )} style={ { ...style, background : getHexadecimnal( e.name ) } } className="pokedex__item">
                         <figure className='pokedex__grid_figure'>
-                            <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getId(e.url)}.png`} alt='pokemon_image'/>
+                            <img className='pokedex__item__image' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getId(e.url)}.png`} alt='pokemon_image'/>
                         </figure>
                         <h5>#{ getId( e.url  )}</h5>
                         <br/>

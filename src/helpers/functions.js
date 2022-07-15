@@ -4,13 +4,13 @@ const getId = ( url ) =>{
 }
 
 const getHexadecimnal = (str) => {
-    var hash = 0;
-    for (var i = 0; i < str.length; i++) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
         hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
-    var colour = '#';
-    for (var i = 0; i < 3; i++) {
-        var value = (hash >> (i * 8)) & 0xFF;
+    let colour = '#';
+    for (let i = 0; i < 3; i++) {
+        let value = (hash >> (i * 8)) & 0xFF;
         colour += ('00' + value.toString(16)).substr(-2);
     }
     return colour;
@@ -19,14 +19,12 @@ const getHexadecimnal = (str) => {
 const getCurrentPage = ( url ) => {
     let page = 0;
     if( url != null ){
-        let ind0 = url.indexOf ("offset=") ;	
+        let ind0 = url.indexOf("offset=") ?? 0;	
+        let ind1 = url.indexOf("&limit") ?? 0;	
         let offset = "";
-        if (ind0>=0)	
-        {
-            let ind1 = url.indexOf ("&limit");	
-        
+        if (ind0 >= 0) {
             if (ind1 > ind0)	{
-                offset = url.substring (ind0+"offset=".length,	ind1);	
+                offset = url.substring (ind0+"offset=".length,	ind1) ?? 0;	
                 page = parseInt( offset ) / 4;
             }
         }
@@ -37,6 +35,41 @@ const getCapitalized = ( str ) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+const mockPokemon = {
+    url : "fakeurl.com",
+    name : "Fake Pokemon",
+    previous : "",
+    next : "",
+    forms : [
+      {
+        url : "fakeurl.com",
+        name : "Fake Pokemon"
+      }
+    ],
+    sprites :{
+      other : {
+        home : {}
+      }
+    },
+    types : [
+        {
+            type : ""
+        }
+    ],
+    moves : [{
+        name : ""
+    }]
+}
 
+const mockResponse = { 
+    previous : "",
+    next : "",
+    results : [
+    {
+      url : "fakeurl.com",
+      name : "Fake Pokemon"
+    }
+    ] 
+} ;
 
-export { getId, getHexadecimnal, getCapitalized , getCurrentPage};
+export { getId, getHexadecimnal, getCapitalized , getCurrentPage, mockPokemon, mockResponse};
