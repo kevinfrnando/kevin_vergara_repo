@@ -18,17 +18,15 @@ function App() {
   const [ found, setFound ] = useState( false );
   
   const getPokemons = useCallback( async () => {
-    try{
-      await fetch( currentUrl )
+    await fetch( currentUrl )
       .then( ( resp ) => resp.json()) 
       .then( ( data ) => {
         setPokemons( data.results );
         setPrevious( data.previous );
         setNext( data.next );
-      })
-    }catch( err ){
-      setPokemons([]);
-    }
+      }).catch(  () =>{
+        setPokemons( [] )
+      } )
   }, [ currentUrl ])
 
 
@@ -43,7 +41,7 @@ function App() {
     .then( ( data ) => {
       setPokemon( data );
     })
-    .catch( err => console.log('Solicitud fallida', err) );
+    .catch(  err => console.log('Solicitud fallida', err) );
   }
 
 
