@@ -22,11 +22,11 @@ const getCurrentPage = ( url ) => {
         let ind0 = url.indexOf("offset=") ?? 0;	
         let ind1 = url.indexOf("&limit") ?? 0;	
         let offset = "";
-        if (ind0 >= 0) {
-            if (ind1 > ind0)	{
-                offset = url.substring (ind0+"offset=".length,	ind1) ?? 0;	
-                page = parseInt( offset ) / 4;
-            }
+        if (ind0 >= 0 && ind1 > ind0) {
+            offset = url.substring(ind0+"offset=".length, ind1);	
+            page = parseInt( offset ) / 4;
+        }else{
+            page = 0; 
         }
     }
     return page+1;
@@ -61,7 +61,8 @@ const mockPokemon = {
     }]
 }
 
-const mockResponse = { 
+const mockResponse = {
+    status : 200, 
     previous : "",
     next : "",
     results : [

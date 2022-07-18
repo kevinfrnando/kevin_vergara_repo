@@ -16,7 +16,8 @@ function App() {
   const [ currentPage, setCurrentPage ] = useState("");
   const [ currentUrl, setCurrentUrl ] = useState( api );
   const [ found, setFound ] = useState( false );
-  
+  const backStart = () => { setCurrentUrl( api ); getPokemons(); setFound( false )} 
+  const back = () => { getPokemons(); setFound( false )} 
   const getPokemons = useCallback( async () => {
     await fetch( currentUrl )
       .then( ( resp ) => resp.json()) 
@@ -24,29 +25,27 @@ function App() {
         setPokemons( data.results );
         setPrevious( data.previous );
         setNext( data.next );
-      }).catch(  () =>{
-        setPokemons( [] )
-      } )
-  }, [ currentUrl ])
+      })
+  }, [ currentUrl ]);
 
+  const getPokemon = async ( find ) => {
+    await fetch( find )
+    .then( ( resp ) => resp.json()) 
+    .then( ( data ) => {
+      setPokemon( data );
+    })
+    .catch(  err => console.log('Solicitud fallida', err) );
+  };
 
   useEffect( ()=>{
     getPokemons();
     setCurrentPage( getCurrentPage( currentUrl ) );
   },[ currentUrl, getPokemons ]);
 
-  const getPokemon = ( find ) => {
-    fetch( find )
-    .then( ( resp ) => resp.json()) 
-    .then( ( data ) => {
-      setPokemon( data );
-    })
-    .catch(  err => console.log('Solicitud fallida', err) );
-  }
 
 
-  const backStart = () => { setCurrentUrl( api ); getPokemons(); setFound( false )} 
-  const back = () => { getPokemons(); setFound( false )} 
+
+
 
   return (
     <div className='container'>

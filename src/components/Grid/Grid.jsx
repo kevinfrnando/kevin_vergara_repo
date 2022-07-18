@@ -13,7 +13,7 @@ function Grid( {pokemons, getPokemon } ){
         <article className='pokedex__grid'>
             {
                 pokemons.map( (e,i) => {  
-                    return <div key={ i } onClick={ () => getPokemon( e.url )} style={ { ...style, background : getHexadecimnal( e.name ) } } className="pokedex__item">
+                    return <div key={ i } data-testid="grid" onClick={ () => getPokemon( e.url )} style={ { ...style, background : getHexadecimnal( e.name ) } } className="pokedex__item">
                         <figure className='pokedex__grid_figure'>
                             <img className='pokedex__item__image' src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getId(e.url)}.png`} alt='pokemon_image'/>
                         </figure>

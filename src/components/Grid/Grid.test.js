@@ -26,21 +26,3 @@ describe('Grid Component', () =>{
 
 })
  
-
-
-
-
-
-// test('Should render Pokemon Component on click', () => {
-//   const getPokemon = jest.fn();
-//   render(<Grid pokemons={ mockData } getPokemon={ getPokemon }/>);
-//   const item = screen.getByText("Fake Pokemon");
-//   fireEvent.click( item, () =>{
-//     render(< Pokemon/>);
-//     console.log( render(< Pokemon/>) )
-//   } )
-//   expect( getPokemon.mock.calls ).toHaveLength( 1 );
-//   // const pokemon = screen.getByText("Movimientos");
-//   // expect( pokemon ).toBeInTheDocument();
-
-// }); 

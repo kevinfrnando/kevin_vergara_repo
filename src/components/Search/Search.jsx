@@ -7,9 +7,9 @@ function Search( { setPokemons, setFound } ){
 
     const searchPokemon = async ( e ) =>{
         e.preventDefault();
-        let pokemon = e?.target[0]?.value.toLowerCase();
+        let pokemon = e.target[0] != null ? e?.target[0]?.value.toLowerCase() : "none";
         if( pokemon?.length > 0 ){
-            
+            /* istanbul ignore next */
             await fetch( "https://pokeapi.co/api/v2/pokemon/"+pokemon )
                 .then( ( resp ) =>  {
                     if ( resp.status === 200 ){
@@ -17,7 +17,7 @@ function Search( { setPokemons, setFound } ){
                         return resp.json()
                     }else{
                         setFound( false );
-                        let toast = document.getElementById("toast");
+                        let toast = document.getElementById("toast") != null ? document.getElementById("toast") : {};
                         toast.className = "show";
                         setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 5000);
                     }
@@ -32,8 +32,8 @@ function Search( { setPokemons, setFound } ){
         }
     }
     return(
-        <form data-testid="form" action="#" onSubmit={ ( ) => searchPokemon( ) } className="pokedex__form">
-            <input title='Escribe el nombre de un Pokemon y presiona ENTER.' className="pokedex__search" placeholder="Buscar" type="text"/>
+        <form data-testid="form" onSubmit={ searchPokemon } className="pokedex__form">
+            <input title='Escribe el nombre de un Pokemon y presiona ENTER.' className="pokedex__search" placeholder="Buscar" type="text" name="pokemon"/>
             <div id="toast"><div id="img"><FontAwesomeIcon icon={faSadCry} /> </div><div id="desc">No se encontro el Pokemon.</div></div>
         </form>
     )
