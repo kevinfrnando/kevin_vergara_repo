@@ -9,3 +9,4 @@ test('Should render Pokedex App', () => {
   const pokemon = screen.getByText("Fake Pokemon");
   expect( pokemon ).toBeInTheDocument();
 });  
+ 

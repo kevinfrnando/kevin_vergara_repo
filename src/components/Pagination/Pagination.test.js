@@ -49,4 +49,4 @@ test('Should render Pagination on next page button click', () => {
     const backLabel = screen.getByText("Siguiente");
     fireEvent.click( backLabel );
     expect( mockFunction ).toHaveBeenCalledTimes( 1 );
-});
+}); 

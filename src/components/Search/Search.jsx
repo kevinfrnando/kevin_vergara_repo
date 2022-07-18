@@ -5,12 +5,12 @@ import { faSadCry } from '@fortawesome/free-solid-svg-icons';
 function Search( { setPokemons, setFound } ){
 
 
-    const searchPokemon = ( e ) =>{
+    const searchPokemon = async ( e ) =>{
         e.preventDefault();
         let pokemon = e?.target[0]?.value.toLowerCase();
         if( pokemon?.length > 0 ){
             
-            fetch( "https://pokeapi.co/api/v2/pokemon/"+pokemon )
+            await fetch( "https://pokeapi.co/api/v2/pokemon/"+pokemon )
                 .then( ( resp ) =>  {
                     if ( resp.status === 200 ){
                         setFound( true )
@@ -32,7 +32,7 @@ function Search( { setPokemons, setFound } ){
         }
     }
     return(
-        <form data-testid="form" action="#" onSubmit={ ( e ) => searchPokemon( e ) } className="pokedex__form">
+        <form data-testid="form" action="#" onSubmit={ ( ) => searchPokemon( ) } className="pokedex__form">
             <input title='Escribe el nombre de un Pokemon y presiona ENTER.' className="pokedex__search" placeholder="Buscar" type="text"/>
             <div id="toast"><div id="img"><FontAwesomeIcon icon={faSadCry} /> </div><div id="desc">No se encontro el Pokemon.</div></div>
         </form>
